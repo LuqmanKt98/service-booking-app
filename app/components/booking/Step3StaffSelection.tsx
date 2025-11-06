@@ -90,16 +90,14 @@ export const Step3StaffSelection: React.FC<Step3StaffSelectionProps> = ({
                       transition={{ type: 'spring', stiffness: 200, damping: 15 }}
                     >
                       <Avatar className="h-24 w-24 mb-4 border-2 border-blue-200">
-                        <AvatarImage src={member.photo} alt={member.name} />
+                        <AvatarImage src={member.profilePhoto} alt={member.name} />
                         <AvatarFallback className="bg-gradient-to-br from-blue-600 to-purple-600 text-white text-3xl font-bold">
                           {member.name.charAt(0).toUpperCase()}
                         </AvatarFallback>
                       </Avatar>
                     </motion.div>
                     <h3 className="font-bold text-lg text-gray-900">{member.name}</h3>
-                    {member.specialization && (
-                      <p className="text-sm text-gray-700 mt-2 font-medium">{member.specialization}</p>
-                    )}
+
                     {member.email && (
                       <div className="flex items-center gap-1 text-xs text-gray-600 mt-3">
                         <Mail className="h-3 w-3" />
