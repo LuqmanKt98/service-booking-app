@@ -58,7 +58,7 @@ export interface Booking {
 }
 
 export interface BookingWizardState {
-  step: 1 | 2 | 3 | 4 | 5;
+  step: 1 | 2 | 3 | 4 | 5 | 6;
   selectedBranch: Branch | null;
   selectedService: Service | null;
   selectedStaff: Staff | null;
