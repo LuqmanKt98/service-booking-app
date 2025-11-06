@@ -1,0 +1,154 @@
+{
+  "branches": [
+    {
+      "id": "branch-1",
+      "name": "Downtown Branch",
+      "address": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "status": "online",
+      "phone": "(555) 123-4567",
+      "email": "downtown@example.com"
+    },
+    {
+      "id": "branch-2",
+      "name": "Uptown Branch",
+      "address": "456 Park Avenue",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10022",
+      "status": "online",
+      "phone": "(555) 234-5678",
+      "email": "uptown@example.com"
+    },
+    {
+      "id": "branch-3",
+      "name": "Brooklyn Branch",
+      "address": "789 Atlantic Avenue",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zipCode": "11217",
+      "status": "online",
+      "phone": "(555) 345-6789",
+      "email": "brooklyn@example.com"
+    }
+  ],
+  "services": [
+    {
+      "id": "service-1",
+      "name": "Haircut",
+      "description": "Professional haircut with styling",
+      "duration": 30,
+      "price": 45,
+      "image": "https://images.unsplash.com/photo-1599351431202-924373718c3e?w=400",
+      "branches": ["branch-1", "branch-2", "branch-3"],
+      "staffIds": ["staff-1", "staff-2", "staff-3"]
+    },
+    {
+      "id": "service-2",
+      "name": "Hair Coloring",
+      "description": "Full hair coloring service",
+      "duration": 60,
+      "price": 85,
+      "image": "https://images.unsplash.com/photo-1562322503-e3c1b0e1e5e5?w=400",
+      "branches": ["branch-1", "branch-2"],
+      "staffIds": ["staff-2", "staff-3"]
+    },
+    {
+      "id": "service-3",
+      "name": "Beard Trim",
+      "description": "Professional beard trimming and shaping",
+      "duration": 20,
+      "price": 25,
+      "image": "https://images.unsplash.com/photo-1621905167918-48416bd8575a?w=400",
+      "branches": ["branch-1", "branch-2", "branch-3"],
+      "staffIds": ["staff-1", "staff-4"]
+    },
+    {
+      "id": "service-4",
+      "name": "Hair Treatment",
+      "description": "Deep conditioning and hair treatment",
+      "duration": 45,
+      "price": 65,
+      "image": "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=400",
+      "branches": ["branch-1", "branch-3"],
+      "staffIds": ["staff-2", "staff-3"]
+    }
+  ],
+  "staff": [
+    {
+      "id": "staff-1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "(555) 111-1111",
+      "profilePhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200",
+      "services": ["service-1", "service-3"],
+      "branches": ["branch-1", "branch-2"],
+      "workingHours": {
+        "Monday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Tuesday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Wednesday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Thursday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Friday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Saturday": { "start": "10:00", "end": "14:00", "isWorking": true },
+        "Sunday": { "start": "00:00", "end": "00:00", "isWorking": false }
+      }
+    },
+    {
+      "id": "staff-2",
+      "name": "Sarah Smith",
+      "email": "sarah@example.com",
+      "phone": "(555) 222-2222",
+      "profilePhoto": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200",
+      "services": ["service-1", "service-2", "service-4"],
+      "branches": ["branch-1", "branch-2"],
+      "workingHours": {
+        "Monday": { "start": "10:00", "end": "18:00", "isWorking": true },
+        "Tuesday": { "start": "10:00", "end": "18:00", "isWorking": true },
+        "Wednesday": { "start": "10:00", "end": "18:00", "isWorking": true },
+        "Thursday": { "start": "10:00", "end": "18:00", "isWorking": true },
+        "Friday": { "start": "10:00", "end": "18:00", "isWorking": true },
+        "Saturday": { "start": "11:00", "end": "15:00", "isWorking": true },
+        "Sunday": { "start": "00:00", "end": "00:00", "isWorking": false }
+      }
+    },
+    {
+      "id": "staff-3",
+      "name": "Michael Johnson",
+      "email": "michael@example.com",
+      "phone": "(555) 333-3333",
+      "profilePhoto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200",
+      "services": ["service-2", "service-4"],
+      "branches": ["branch-2", "branch-3"],
+      "workingHours": {
+        "Monday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Tuesday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Wednesday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Thursday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Friday": { "start": "09:00", "end": "17:00", "isWorking": true },
+        "Saturday": { "start": "00:00", "end": "00:00", "isWorking": false },
+        "Sunday": { "start": "00:00", "end": "00:00", "isWorking": false }
+      }
+    },
+    {
+      "id": "staff-4",
+      "name": "Emily Davis",
+      "email": "emily@example.com",
+      "phone": "(555) 444-4444",
+      "profilePhoto": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200",
+      "services": ["service-3"],
+      "branches": ["branch-1", "branch-3"],
+      "workingHours": {
+        "Monday": { "start": "12:00", "end": "20:00", "isWorking": true },
+        "Tuesday": { "start": "12:00", "end": "20:00", "isWorking": true },
+        "Wednesday": { "start": "12:00", "end": "20:00", "isWorking": true },
+        "Thursday": { "start": "12:00", "end": "20:00", "isWorking": true },
+        "Friday": { "start": "12:00", "end": "20:00", "isWorking": true },
+        "Saturday": { "start": "10:00", "end": "16:00", "isWorking": true },
+        "Sunday": { "start": "00:00", "end": "00:00", "isWorking": false }
+      }
+    }
+  ]
+}
+
