@@ -53,7 +53,7 @@ export function SeedDataButton() {
       alert('All relationships updated successfully!');
     } catch (error) {
       console.error('Error updating relationships:', error);
-      alert('Error updating relationships: ' + error.message);
+      alert('Error updating relationships: ' + (error instanceof Error ? error.message : String(error)));
     } finally {
       setLoading(false);
     }
