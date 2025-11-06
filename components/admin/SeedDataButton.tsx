@@ -36,7 +36,7 @@ export function SeedDataButton() {
           staffIds: staffIds
         });
         
-        console.log(`Updated service ${service.name} with branches and staff`);
+        console.log(`Updated service ${service.id} with branches and staff`);
       }
       
       // Update each staff member to include services
@@ -47,7 +47,7 @@ export function SeedDataButton() {
           services: serviceIds
         });
         
-        console.log(`Updated staff ${staffMember.name} with services`);
+        console.log(`Updated staff ${staffMember.id} with services`);
       }
       
       alert('All relationships updated successfully!');
