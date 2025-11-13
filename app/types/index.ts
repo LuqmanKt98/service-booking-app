@@ -2,12 +2,14 @@ export interface Branch {
   id: string;
   name: string;
   address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  status: 'online' | 'offline';
   phone?: string;
   email?: string;
+  online: boolean;
+  visible: boolean;
+  // Legacy fields (may not be present in all branches)
+  city?: string;
+  state?: string;
+  zipCode?: string;
 }
 
 export interface Service {
@@ -19,6 +21,8 @@ export interface Service {
   image?: string;
   branches: string[]; // branch IDs where this service is available
   staffIds: string[]; // staff members assigned to this service
+  visible?: boolean; // whether the service is visible to customers
+  available?: boolean; // whether the service is currently available for booking
 }
 
 export interface Staff {
@@ -49,7 +53,9 @@ export interface Booking {
   serviceId: string;
   staffId: string;
   date: string; // YYYY-MM-DD format
-  time: string; // HH:mm format
+  time?: string; // HH:mm format (legacy field)
+  startTime: string; // HH:mm format
+  duration?: number; // in minutes
   customerName?: string;
   customerEmail?: string;
   customerPhone?: string;

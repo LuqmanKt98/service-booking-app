@@ -21,13 +21,6 @@ export const Step1BranchSelection: React.FC<Step1BranchSelectionProps> = ({
 }) => {
   const { branches, loading, error } = useBranches();
 
-  // Always call hooks at the top level
-  React.useEffect(() => {
-    if (branches.length === 1 && !selectedBranch) {
-      onSelect(branches[0]);
-    }
-  }, [branches, selectedBranch, onSelect]);
-
   if (loading) {
     return (
       <motion.div
@@ -59,9 +52,16 @@ export const Step1BranchSelection: React.FC<Step1BranchSelectionProps> = ({
     );
   }
 
-  // If only one branch, skip to next step
-  if (branches.length === 1) {
-    return null;
+  // If no branches available
+  if (branches.length === 0 && !loading) {
+    return (
+      <Card className="bg-yellow-50 border-yellow-200">
+        <CardContent className="pt-6">
+          <p className="font-medium text-yellow-700">No branches available</p>
+          <p className="text-sm text-yellow-600">Please contact support or try again later.</p>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (

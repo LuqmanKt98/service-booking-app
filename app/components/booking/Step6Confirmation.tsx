@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Calendar, Clock, MapPin, Scissors, User, Mail, Phone, Loader2, PartyPopper } from 'lucide-react';
 import { Branch, Service, Staff } from '@/app/types';
 import Link from 'next/link';
+import { formatTimeDisplay } from '@/app/utils/dateTime';
 
 interface CustomerInfo {
   name: string;
@@ -96,7 +97,7 @@ export const Step6Confirmation: React.FC<Step6ConfirmationProps> = ({
               <Calendar className="h-5 w-5 text-gray-400 mt-0.5" />
               <div>
                 <p className="font-medium text-gray-900">{date}</p>
-                <p className="text-sm text-gray-600">at {time}</p>
+                <p className="text-sm text-gray-600">at {time ? formatTimeDisplay(time) : ''}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -169,7 +170,7 @@ export const Step6Confirmation: React.FC<Step6ConfirmationProps> = ({
               <Calendar className="h-5 w-5 text-blue-600 mt-0.5" />
               <div>
                 <p className="text-sm text-gray-500">Date & Time</p>
-                <p className="font-medium text-gray-900">{date} at {time}</p>
+                <p className="font-medium text-gray-900">{date} at {time ? formatTimeDisplay(time) : ''}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">

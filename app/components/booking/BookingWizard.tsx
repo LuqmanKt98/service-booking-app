@@ -260,6 +260,7 @@ export const BookingWizard: React.FC = () => {
               <Step3StaffSelection
                 key="step3"
                 serviceId={state.selectedService?.id || null}
+                branchId={state.selectedBranch?.id || null}
                 onSelect={handleStaffSelect}
                 selectedStaff={state.selectedStaff}
                 onNext={handleNext}

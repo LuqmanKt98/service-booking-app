@@ -13,6 +13,7 @@ import {
   formatDateDisplay,
   isToday,
   getDayOfWeek,
+  formatTimeDisplay,
 } from '@/app/utils/dateTime';
 
 interface Step4DateTimeSelectionProps {
@@ -39,7 +40,7 @@ export const Step4DateTimeSelection: React.FC<Step4DateTimeSelectionProps> = ({
   onBack,
 }) => {
   const [selectedDateObj, setSelectedDateObj] = useState<Date | null>(null);
-  const [timeSlots, setTimeSlots] = useState<Array<{ time: string; iso: string }>>([]);
+  const [timeSlots, setTimeSlots] = useState<Array<{ time: string; iso: string; value: string }>>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
 
   const dates = useMemo(() => getNext14Days(), []);
@@ -145,16 +146,16 @@ export const Step4DateTimeSelection: React.FC<Step4DateTimeSelectionProps> = ({
               <div className="grid grid-cols-1 gap-2 max-h-96 overflow-y-auto pr-2">
                 {timeSlots.length > 0 ? (
                   timeSlots.map((slot) => {
-                    const isSelected = selectedTime === slot.time;
+                    const isSelected = selectedTime === slot.value;
                     return (
                       <Card
-                        key={slot.time}
+                        key={slot.iso}
                         className={`cursor-pointer transition-all hover:shadow-md ${
                           isSelected
                             ? 'border-blue-600 border-2 bg-blue-50'
                             : 'border-gray-200 hover:border-blue-300'
                         }`}
-                        onClick={() => onTimeSelect(slot.time)}
+                        onClick={() => onTimeSelect(slot.value)}
                       >
                         <CardContent className="p-2 text-center">
                           <div className="text-sm font-medium text-gray-900">{slot.time}</div>
@@ -208,7 +209,7 @@ export const Step4DateTimeSelection: React.FC<Step4DateTimeSelectionProps> = ({
               <div>
                 <p className="text-sm text-gray-600">Date & Time</p>
                 <p className="font-medium text-gray-900">
-                  {formatDateDisplay(selectedDateObj!)} at {selectedTime}
+                  {formatDateDisplay(selectedDateObj!)} at {selectedTime ? formatTimeDisplay(selectedTime) : ''}
                 </p>
               </div>
             </div>

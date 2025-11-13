@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Loader2, Plus, Edit, Trash2, MapPin, Phone, Mail } from 'lucide-react';
+import { Loader2, Plus, Edit, Trash2, MapPin, Phone, Mail, Power } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Switch } from '@/components/ui/switch';
 
 interface Branch {
   id: string;
@@ -104,6 +105,23 @@ export function BranchesManager() {
       online: true,
       visible: true,
     });
+  };
+
+  const toggleBranchStatus = async (branchId: string, currentStatus: boolean) => {
+    try {
+      await updateDoc(doc(db, 'branches', branchId), {
+        online: !currentStatus
+      });
+      // Update local state immediately for better UX
+      setBranches(branches.map(branch =>
+        branch.id === branchId
+          ? { ...branch, online: !currentStatus }
+          : branch
+      ));
+    } catch (error) {
+      console.error('Error toggling branch status:', error);
+      alert('Failed to update branch status. Please try again.');
+    }
   };
 
   if (loading) {
@@ -206,11 +224,18 @@ export function BranchesManager() {
                   </div>
                 </TableCell>
                 <TableCell>
-                  {branch.online ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-green-100 text-green-700 border-green-300 text-xs font-medium">Online</span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-gray-100 text-gray-700 border-gray-300 text-xs font-medium">Offline</span>
-                  )}
+                  <div className="flex items-center gap-3">
+                    <Switch
+                      checked={branch.online}
+                      onCheckedChange={() => toggleBranchStatus(branch.id, branch.online)}
+                      className="data-[state=checked]:bg-green-600"
+                    />
+                    {branch.online ? (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-green-100 text-green-700 border-green-300 text-xs font-medium">Online</span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-gray-100 text-gray-700 border-gray-300 text-xs font-medium">Offline</span>
+                    )}
+                  </div>
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
@@ -232,13 +257,20 @@ export function BranchesManager() {
       <div className="md:hidden grid grid-cols-1 gap-4">
         {branches.map((branch) => (
           <div key={branch.id} className="rounded-xl border-2 border-gray-200 bg-white p-4 shadow">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mb-3">
               <div className="text-gray-900 font-bold">{branch.name}</div>
-              {branch.online ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-green-100 text-green-700 border-green-300 text-xs font-medium">Online</span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-gray-100 text-gray-700 border-gray-300 text-xs font-medium">Offline</span>
-              )}
+              <div className="flex items-center gap-2">
+                <Switch
+                  checked={branch.online}
+                  onCheckedChange={() => toggleBranchStatus(branch.id, branch.online)}
+                  className="data-[state=checked]:bg-green-600"
+                />
+                {branch.online ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-green-100 text-green-700 border-green-300 text-xs font-medium">Online</span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border bg-gray-100 text-gray-700 border-gray-300 text-xs font-medium">Offline</span>
+                )}
+              </div>
             </div>
             <div className="mt-2 text-gray-900 flex items-center gap-2"><MapPin className="h-4 w-4 text-purple-600" />{branch.address}</div>
             <div className="mt-1 text-sm text-gray-700 flex items-center gap-2"><Phone className="h-3.5 w-3.5 text-blue-600" />{branch.phone}</div>

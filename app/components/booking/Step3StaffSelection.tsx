@@ -11,6 +11,7 @@ import { useStaff } from '@/app/hooks/useBookingData';
 
 interface Step3StaffSelectionProps {
   serviceId: string | null;
+  branchId: string | null;
   onSelect: (staff: Staff) => void;
   selectedStaff: Staff | null;
   onNext: () => void;
@@ -19,12 +20,13 @@ interface Step3StaffSelectionProps {
 
 export const Step3StaffSelection: React.FC<Step3StaffSelectionProps> = ({
   serviceId,
+  branchId,
   onSelect,
   selectedStaff,
   onNext,
   onBack,
 }) => {
-  const { staff, loading, error } = useStaff(serviceId);
+  const { staff, loading, error } = useStaff(serviceId, branchId);
 
   if (loading) {
     return (
